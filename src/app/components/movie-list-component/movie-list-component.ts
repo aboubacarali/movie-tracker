@@ -8,11 +8,13 @@ import {MatDividerModule} from '@angular/material/divider';
 import {PaginatedMoviesResponse} from '../../shared/model/paginated-movies';
 import {environment} from '../../../environment/environment';
 import {RouterLink} from '@angular/router';
+import {NgxSpinnerComponent} from 'ngx-spinner';
+import {MatProgressBarModule} from '@angular/material/progress-bar';
 
 
 @Component({
   selector: 'app-movie-list-component',
-  imports: [MatListModule, MatDividerModule, CommonModule, RouterLink],
+  imports: [MatListModule, MatDividerModule, CommonModule, RouterLink, NgxSpinnerComponent, MatProgressBarModule],
   templateUrl: './movie-list-component.html',
   styleUrl: './movie-list-component.css'
 

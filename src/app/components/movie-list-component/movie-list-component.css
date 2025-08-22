@@ -9,3 +9,18 @@
 button {
   padding: 1rem;
 }
+
+.container {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  margin-top: 10rem;
+}
+
+a {
+  color: blueviolet;
+  text-decoration: none;
+  font-size: 1.2rem;
+  font-weight: bold;
+}

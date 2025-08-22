@@ -3,6 +3,12 @@
 </pre>-->
 
 <div class="container">
+  @if (isLoading) {
+   <!-- <ngx-spinner bdColor="rgba(0, 0, 0, 0.8)" size="medium" color="#63605e" type="timer" [fullScreen]="true"><p
+      style="color: white"> Loading... </p></ngx-spinner>-->
+    <mat-progress-bar mode="indeterminate"></mat-progress-bar>
+
+  }
   <mat-list>
     @for (movie of movieList; track movie.id) {
       <mat-list-item><a [routerLink]="['/movies/', movie.id]">{{ movie.title }}</a> - {{ movie.director | uppercase }}
@@ -12,8 +18,10 @@
   </mat-list>
 
   <div class="paginator">
-    <button [disabled]="response.prev===null" (click)="handlePageChange(response.prev ? response.prev: 1)"><span><- Previous</span></button>
-    <button [disabled]="response.next===null" (click)="handlePageChange(response.next ? response.next: response.pages)"><span>Next -></span></button>
+    <button [disabled]="response.prev===null" (click)="handlePageChange(response.prev ? response.prev: 1)"><span><- Previous</span>
+    </button>
+    <button [disabled]="response.next===null" (click)="handlePageChange(response.next ? response.next: response.pages)">
+      <span>Next -></span></button>
   </div>
 </div>
 
