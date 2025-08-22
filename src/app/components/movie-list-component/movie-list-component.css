@@ -1,0 +1,11 @@
+.paginator {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  gap: 1rem;
+  margin: auto;
+}
+
+button {
+  padding: 1rem;
+}

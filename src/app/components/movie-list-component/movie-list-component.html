@@ -1,26 +1,19 @@
-
-<!--<pre>-->
-<!--&lt;!&ndash;{{ (asyncMovieList|async)?.data | json}}&ndash;&gt;-->
-<!--</pre>-->
-<!--<div *ngFor="let movie of (asyncMovieList|async)?.data" >-->
-<!--        {{movie.title}} - {{movie.year}}-->
-<!--</div>-->
-
-<!--<div *ngFor="let movie of movieList" >-->
-<!--        {{movie.title}} - {{movie.year}}-->
-<!--</div>-->
+<!--<pre>
+  {{ response | json }}
+</pre>-->
 
 <div class="container">
-<mat-list>
-  @for (movie of movieList; track movie.id)
-  {
-    <mat-list-item><a [routerLink]="['/movies/', movie.id]">{{ movie.title }}</a> - {{movie.director | uppercase}}</mat-list-item>
-  <mat-divider></mat-divider>
-  }
-</mat-list>
+  <mat-list>
+    @for (movie of movieList; track movie.id) {
+      <mat-list-item><a [routerLink]="['/movies/', movie.id]">{{ movie.title }}</a> - {{ movie.director | uppercase }}
+      </mat-list-item>
+      <mat-divider></mat-divider>
+    }
+  </mat-list>
 
-<!--  <div>-->
-<!--    <p>{{response.items | json}}</p>-->
-<!--  </div>-->
+  <div class="paginator">
+    <button [disabled]="response.prev===null" (click)="handlePageChange(response.prev ? response.prev: 1)"><span><- Previous</span></button>
+    <button [disabled]="response.next===null" (click)="handlePageChange(response.next ? response.next: response.pages)"><span>Next -></span></button>
+  </div>
 </div>
 

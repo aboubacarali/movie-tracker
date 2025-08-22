@@ -26,4 +26,8 @@ export class MovieService {
     return this.http.get<Movie>(environment.apiUrl + `movies/${id}`)
   }
 
+  public createMovie (movie: Omit<Movie, 'id'>): Observable<Movie> {
+    return this.http.post<Movie>(environment.apiUrl + `movies`, movie)
+  }
+
 }

@@ -1,0 +1,44 @@
+<form [formGroup]="createMovieForm" (ngSubmit)="onSubmit()" novalidate>
+
+  <div>
+    <label for="title">Titre</label>
+    <input id="title" formControlName="title" type="text"/>
+    @if (createMovieForm.get('title')?.invalid && createMovieForm.get('title')?.touched) {
+      <div class="error">Le titre est requis.</div>
+    }
+  </div>
+
+  <div>
+    <label for="director">Réalisateur</label>
+    <input id="director" formControlName="director" type="text"/>
+    @if (createMovieForm.get('director')?.invalid && createMovieForm.get('director')?.touched) {
+      <div class="error">Le nom du réalisateur est requis.</div>
+    }
+  </div>
+
+  <div>
+    <label for="year">Année</label>
+    <input id="year" formControlName="year" type="text"/>
+    @if (createMovieForm.get('year')?.invalid && createMovieForm.get('year')?.touched) {
+      <div class="error">L'année est requise.</div>
+    }
+  </div>
+
+  <div>
+    <label for="poster">URL de l'affiche</label>
+    <input id="poster" formControlName="poster" type="text"/>
+    @if (createMovieForm.get('poster')?.invalid && createMovieForm.get('poster')?.touched) {
+      <div class="error">L'URL de l'affiche est requise.</div>
+    }
+  </div>
+
+  <div>
+    <label for="synopsis">Synopsis</label>
+    <textarea id="synopsis" formControlName="synopsis"></textarea>
+    @if (createMovieForm.get('synopsis')?.invalid && createMovieForm.get('synopsis')?.touched) {
+      <div class="error">Le synopsis est requis.</div>
+    }
+  </div>
+
+  <button type="submit" [disabled]="createMovieForm.invalid">Créer le film</button>
+</form>
