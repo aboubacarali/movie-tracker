@@ -7,12 +7,12 @@ import {MatListModule} from '@angular/material/list';
 import {MatDividerModule} from '@angular/material/divider';
 import {PaginatedMoviesResponse} from '../../shared/model/paginated-movies';
 import {environment} from '../../../environment/environment';
+import {RouterLink} from '@angular/router';
 
 
 @Component({
   selector: 'app-movie-list-component',
-  imports: [
-    JsonPipe, MatListModule, MatDividerModule, CommonModule, AsyncPipe],
+  imports: [MatListModule, MatDividerModule, CommonModule, RouterLink],
   templateUrl: './movie-list-component.html',
   styleUrl: './movie-list-component.css'
 })
@@ -26,43 +26,26 @@ export class MovieListComponent implements OnInit {
   constructor(private movieService: MovieService)
   { }
 
-  async ngOnInit() {
-    this.movieService.getMovies(1,environment.moviesPerPageLimit).subscribe((res:any) => {
-      this.movieList = res;
-      console.log({'Movie list':this});
-    })
-  }
+  ngOnInit() {
+    this.movieService.getMovies(1, environment.moviesPerPageLimit)
+      .subscribe({
+        next: (data: PaginatedMoviesResponse) => {
+          this.response = data;
+            this.movieList = data.data;
+          this.isLoading = false;
 
-  loadData(response: PaginatedMoviesResponse)  {
-    this.response = response;
-    this.movieList = response.data as Movie[];
-
-    this.isLoading = false;
-
-  }
-
-  onDataError (error: any) {
-    console.log({'An error occured: ': error});
-    this.isLoading = false;
-  }
-
-
-
-  async loadMovies(page: number = 1) {
-    this.movieService.getMovies(page, environment.moviesPerPageLimit)
-      .subscribe(
-        this.loadData
-        /*
-        {
-          next: this.loadData,
-
-          error: this.onDataError
+        },
+        error: err => {
+          console.log(err)
+          this.isLoading = false
         }
+      })
 
-         */
-        );
 
   }
+
+
+
 
 
 }

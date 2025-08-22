@@ -14,7 +14,7 @@
 <mat-list>
   @for (movie of movieList; track movie.id)
   {
-  <mat-list-item>{{ movie.title }} - {{movie.director | uppercase}}</mat-list-item>
+    <mat-list-item><a [routerLink]="['/movies/', movie.id]">{{ movie.title }}</a> - {{movie.director | uppercase}}</mat-list-item>
   <mat-divider></mat-divider>
   }
 </mat-list>
